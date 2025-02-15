@@ -1,4 +1,3 @@
-# GraduationProject
 # Disease Prediction System
 Machine Learning cannot independently diagnose patients but can serve as a valuable 
 educational tool for medical students. Traditional diagnostic training often lacks interactive, 
