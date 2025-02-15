@@ -32,5 +32,9 @@ structured and interactive manner.
 - Pandas, NumPy
 - Seaborn, Matplotlib (for visualization)
 - Joblib (for model persistence)
+![diseasePredict1](https://github.com/user-attachments/assets/0bf7f63b-9ce2-4111-999f-02a44b36287a)
+- The Interface
+![diseasePredict](https://github.com/user-attachments/assets/01fe7468-f25b-411e-b46e-224d9e90d57e)
+- Prediction Result
 # Licence
 - This project is licensed under the MIT License.
