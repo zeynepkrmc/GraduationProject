@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+    display: flex;
+    background-image: url('https://media.licdn.com/dms/image/D4E12AQE8rSKuJ596vQ/article-cover_image-shrink_720_1280/0/1716215401306?e=2147483647&v=beta&t=dcyRoQEph_boqflahq0G5eeqegDVfZembL5mFh88-ms'); /* Buraya resmin URL'sini ekleyin */
+    background-size: cover;
+    background-position: center;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 600px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            flex: 1;
+            font-weight: bold;
+            color: #555555;
+            margin-right: 10px;
+        }
+
+        .form-group input {
+            flex: 2;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #e80c14; 
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #10cfed;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Practice on Diseases</h2>
+        <form id="predictForm" method="post">
+            <div class="form-group">
+                <label for="disease">Disease:</label>
+                <input type="text" id="disease" name="disease" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fever">Fever (Yes/No):</label>
+                <input type="text" id="fever" name="fever" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cough">Cough (Yes/No):</label>
+                <input type="text" id="cough" name="cough" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fatigue">Fatigue (Yes/No):</label>
+                <input type="text" id="fatigue" name="fatigue" required>
+            </div>
+
+            <div class="form-group">
+                <label for="breathing">Difficulty Breathing (Yes/No):</label>
+                <input type="text" id="breathing" name="breathing" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender (Male/Female):</label>
+                <input type="text" id="gender" name="gender" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bloodPressure">Blood Pressure (Normal/High/Low) :</label>
+                <input type="text" id="bloodPressure" name="bloodPressure" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cholesterol">Cholesterol (Normal/High) :</label>
+                <input type="text" id="cholesterol" name="cholesterol" required>
+            </div>
+
+            <button type="submit" id="submit">Predict</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("predictForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                disease: document.getElementById("disease").value.trim(),
+                fever: document.getElementById("fever").value.trim(),
+                cough: document.getElementById("cough").value.trim(),
+                fatigue: document.getElementById("fatigue").value.trim(),
+                breathing: document.getElementById("breathing").value.trim(),
+                age: document.getElementById("age").value.trim(),
+                gender: document.getElementById("gender").value.trim(),
+                bloodPressure: document.getElementById("bloodPressure").value.trim(),
+                cholesterol: document.getElementById("cholesterol").value.trim(),
+            };
+
+            try {
+                const response = await fetch("http://127.0.0.1:8080/predict", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    document.getElementById("result").innerText = `Prediction: ${result.Prediction}`;
+                } else {
+                    const error = await response.json();
+                    document.getElementById("result").innerText = `Error: ${error.error}`;
+                }
+            } catch (err) {
+                document.getElementById("result").innerText = "Something went wrong. Please try again.";
+            }
+        });
+    </script>
+</body>
+
+</html>
