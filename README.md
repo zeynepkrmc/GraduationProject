@@ -22,12 +22,12 @@ structured and interactive manner.
 - Model performance is evaluated using accuracy metrics and visualizations.
   
 # Machine Learning Process
-1- Load the dataset and preprocess categorical variables using label encoding.
-2- Scale numerical features using MinMaxScaler.
-3- Split data into training and testing sets.
-4- Apply SMOTE for class balancing.
-5- Train multiple models and evaluate their performance.
-6- Save the best-performing model (Random Forest) for predictions.
+- Load the dataset and preprocess categorical variables using label encoding.
+- Scale numerical features using MinMaxScaler.
+- Split data into training and testing sets.
+- Apply SMOTE for class balancing.
+- Train multiple models and evaluate their performance.
+- Save the best-performing model (Random Forest) for predictions.
 
 # Technologies Used
 - Python
